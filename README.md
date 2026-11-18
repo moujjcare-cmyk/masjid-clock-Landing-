@@ -1,6 +1,6 @@
 # Masjid Clock (MOUJ SYNC) — Landing Page
 
-A private, offline-first landing page (`index.html`) for **Masjid Clock**, with the APK hosted directly in the same repository so your main source repo (`moujjcare-cmyk/namaz-app`) can remain completely private.
+A private, offline-first landing page (`index.html`) for **Masjid Clock**, with the APK hosted directly in the same repository so your main source repo (`moujjcare-cmyk/masjid-clock-Landing`) can remain completely private.
 
 ## Included Files
 - `index.html` — Complete mobile-first landing page (MOUJ SYNC dark/light theme, Urdu Nastaleeq + English toggle, live offline QR code generator, multi-video guide tabs, 6-card visual slider, and update notes).
