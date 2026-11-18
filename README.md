@@ -9,7 +9,7 @@ A private, offline-first landing page (`index.html`) for **Masjid Clock**, with 
 - `assets/Logo.jpg` & `assets/1.jpg` to `assets/6.jpg` — Official logo and 6-card visual Urdu guide.
 
 ## Deploy to GitHub Pages
-1. Create a new public repository on GitHub (e.g., `masjid-clock`).
+1. Create a new public repository on GitHub (e.g., `masjid-clock-Landing`).
 2. Upload `index.html`, `Masjid-Clock.apk`, `README.md`, and the `assets/` folder.
 3. Go to **Settings -> Pages -> Branch: `main` / `/ (root)` -> Save**.
 4. To release an app update later, simply replace `Masjid-Clock.apk` and update the version notes in `index.html`.
