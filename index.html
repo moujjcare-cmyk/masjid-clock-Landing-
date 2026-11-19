@@ -19,9 +19,9 @@
       --bg: #0A0A0E;
       --bg-grad-1: rgba(162, 213, 242, 0.10);
       --bg-grad-2: rgba(229, 193, 88, 0.08);
-      --surface: rgba(28, 37, 43, 0.78);
+      --surface: rgba(28, 37, 43, 0.80);
       --surface-solid: #1C252B;
-      --surface-2: rgba(17, 23, 28, 0.85);
+      --surface-2: rgba(17, 23, 28, 0.88);
       --border: rgba(162, 213, 242, 0.18);
       --border-gold: rgba(229, 193, 88, 0.35);
       --accent: #A2D5F2;
@@ -33,7 +33,7 @@
       --emerald-border: rgba(16, 185, 129, 0.35);
       --text: #F3F7FA;
       --muted: #9FB0BC;
-      --msg-bg: rgba(8, 10, 14, 0.55);
+      --msg-bg: rgba(8, 10, 14, 0.58);
       --shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
       --pattern-opacity: 0.045;
     }
@@ -42,7 +42,7 @@
       --bg: #F2F6FA;
       --bg-grad-1: rgba(14, 116, 144, 0.09);
       --bg-grad-2: rgba(180, 132, 30, 0.08);
-      --surface: rgba(255, 255, 255, 0.88);
+      --surface: rgba(255, 255, 255, 0.90);
       --surface-solid: #FFFFFF;
       --surface-2: #F7FAFC;
       --border: rgba(15, 76, 117, 0.16);
@@ -68,7 +68,7 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--urdu-font);
-      line-height: 1.85;
+      line-height: 1.9;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
@@ -107,10 +107,11 @@
       line-height: 1.62;
     }
 
-    .ltr-num, code, .en-inline {
+    .en-term, .ltr-num, code {
       font-family: var(--sans-font);
       direction: ltr;
       unicode-bidi: isolate;
+      display: inline-block;
     }
 
     .container {
@@ -120,6 +121,7 @@
       padding: 16px;
     }
 
+    /* Sticky Dock (Flips cleanly RTL <-> LTR) */
     .sticky-dock {
       position: sticky;
       top: 8px;
@@ -130,7 +132,7 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 10px 14px 8px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       box-shadow: var(--shadow);
     }
 
@@ -144,6 +146,361 @@
       margin-bottom: 8px;
     }
 
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      object-fit: cover;
+      border: 1.5px solid var(--border-gold);
+    }
+
+    .brand-title {
+      font-family: var(--sans-font);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .brand-sub {
+      font-family: var(--sans-font);
+      font-size: 0.68rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .topbar-actions { display: flex; align-items: center; gap: 8px; }
+
+    .lang-btn, .theme-btn, .pill-btn {
+      background: var(--surface-2);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-family: var(--sans-font);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .lang-btn:hover, .theme-btn:hover, .pill-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .quick-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+
+    .quick-nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      transition: all 0.2s ease;
+    }
+
+    .quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Section Cards */
+    .section {
+      scroll-margin-top: 132px;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 24px 22px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.hero-top {
+      border-top: 2px solid var(--border-gold);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.38rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: var(--emerald);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .clean-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-list li {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 15px;
+      font-size: 1.02rem;
+    }
+
+    .clean-list li.gold-line {
+      border-color: var(--border-gold);
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: rgba(162, 213, 242, 0.16);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1px 8px;
+      font-family: var(--sans-font);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-inline-end: 6px;
+    }
+
+    /* Download Section (Clean & Focused) */
+    .download-box {
+      text-align: center;
+      padding: 8px 4px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: var(--accent-ink);
+      font-family: var(--sans-font);
+      font-weight: 800;
+      font-size: 1.06rem;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(162, 213, 242, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .download-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(162, 213, 242, 0.36); }
+
+    .apk-meta {
+      margin-top: 12px;
+      font-family: var(--sans-font);
+      font-size: 0.84rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Video Section */
+    .video-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .video-tab, .qr-tab {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-family: var(--sans-font);
+      cursor: pointer;
+    }
+
+    .video-tab.active, .qr-tab.active {
+      background: rgba(162, 213, 242, 0.18);
+      color: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .video-wrap {
+      background: #000;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      max-width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-wrap video { width: 100%; height: auto; display: block; max-height: 540px; }
+
+    /* QR Card */
+    .qr-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .qr-tabs {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .qr-frame {
+      background: #FFFFFF;
+      padding: 12px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    }
+
+    .qr-frame canvas { display: block; width: 175px; height: 175px; }
+    .qr-caption { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+    .qr-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+    /* Slider */
+    .slider-stage {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .slider-img-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 360px;
+    }
+
+    .slider-img-wrap img {
+      max-width: 100%;
+      max-height: 540px;
+      border-radius: 14px;
+      cursor: zoom-in;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .nav-btn {
+      background: var(--surface-solid);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-family: var(--sans-font);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .dots { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(162, 213, 242, 0.28);
+      border: none;
+      cursor: pointer;
+    }
+    html[data-theme="light"] .dot { background: rgba(15, 76, 117, 0.22); }
+    .dot.active { background: var(--accent); transform: scale(1.25); }
+
+    .thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
+    .thumb-btn {
+      background: var(--surface-solid);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 3px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .thumb-btn.active { border-color: var(--accent); }
+    .thumb-btn img { width: 100%; height: 62px; object-fit: cover; border-radius: 7px; display: block; }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .privacy-item {
+      background: var(--surface-2);
+      border: 1px solid var(--emerald-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .privacy-item strong { color: var(--emerald); display: block; margin-bottom: 4px; font-size: 1.05rem; }
+
+    footer { text-align: center; color: var(--muted); padding: 18px 10px 36px; font-size: 0.92rem; }
+
+    /* Back to Top Button */
     .back-top-btn {
       position: fixed;
       bottom: 20px;
@@ -167,430 +524,8 @@
       align-items: center;
       justify-content: center;
     }
-
-    .back-top-btn.visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .back-top-btn:hover {
-      background: var(--accent);
-      color: var(--accent-ink);
-    }
-
-    .brand { display: flex; align-items: center; gap: 12px; }
-
-    .brand img {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1.5px solid var(--border-gold);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }
-
-    .brand-title {
-      font-family: var(--sans-font);
-      font-weight: 800;
-      font-size: 1.02rem;
-      color: var(--text);
-    }
-
-    .brand-sub {
-      font-family: var(--sans-font);
-      font-size: 0.7rem;
-      color: var(--gold);
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-    }
-
-    .topbar-actions { display: flex; align-items: center; gap: 8px; }
-
-    .lang-btn, .theme-btn, .pill-btn {
-      background: var(--surface-2);
-      color: var(--accent);
-      border: 1px solid var(--border);
-      padding: 8px 13px;
-      border-radius: 999px;
-      font-family: var(--sans-font);
-      font-size: 0.83rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .lang-btn:hover, .theme-btn:hover, .pill-btn:hover {
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .quick-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 0 2px;
-      scrollbar-width: none;
-    }
-    .quick-nav::-webkit-scrollbar { display: none; }
-
-    .quick-nav a {
-      flex: 0 0 auto;
-      text-decoration: none;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.88rem;
-      transition: all 0.2s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
-
-    .hero {
-      position: relative;
-      background: var(--surface);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--border-gold);
-      border-radius: var(--radius-xl);
-      padding: 28px 24px;
-      margin-bottom: 22px;
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 24px;
-      align-items: center;
-      box-shadow: var(--shadow);
-    }
-
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding: 22px 16px; }
-    }
-
-    .privacy-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 13px;
-      border-radius: 999px;
-      background: var(--emerald-bg);
-      border: 1px solid var(--emerald-border);
-      color: var(--emerald);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.45;
-    }
-
-    .hero p { color: var(--muted); font-size: 1.05rem; margin-bottom: 18px; }
-
-    .feature-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    @media (max-width: 768px) { .feature-chips { justify-content: center; } }
-
-    .f-chip {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 4px 11px;
-      border-radius: 10px;
-      font-size: 0.86rem;
-    }
-
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 390px;
-      padding: 15px 22px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-      color: var(--accent-ink);
-      font-family: var(--sans-font);
-      font-weight: 800;
-      font-size: 1.05rem;
-      text-decoration: none;
-      box-shadow: 0 12px 30px rgba(162, 213, 242, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .download-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(162, 213, 242, 0.36); }
-
-    .apk-meta {
-      margin-top: 10px;
-      font-family: var(--sans-font);
-      font-size: 0.82rem;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    @media (max-width: 768px) { .apk-meta { justify-content: center; } }
-
-    .qr-card {
-      background: var(--surface-2);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      text-align: center;
-    }
-
-    .qr-tabs, .video-tabs {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .video-tabs { justify-content: flex-start; }
-
-    .qr-tab, .video-tab {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 0.82rem;
-      font-family: var(--sans-font);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .qr-tab.active, .video-tab.active {
-      background: rgba(162, 213, 242, 0.18);
-      color: var(--accent);
-      border-color: var(--accent);
-      font-weight: 700;
-    }
-
-    .qr-frame {
-      background: #FFFFFF;
-      padding: 12px;
-      border-radius: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
-    }
-
-    .qr-frame canvas { display: block; width: 170px; height: 170px; }
-    .qr-caption { font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; }
-    .qr-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-
-    .section {
-      scroll-margin-top: 132px;
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 24px 22px;
-      margin-bottom: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    .section-title {
-      font-size: 1.42rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-    @media (max-width: 768px) { .video-grid { grid-template-columns: 1fr; } }
-
-    .video-wrap {
-      background: #000;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--border-gold);
-      max-width: 320px;
-      margin: 0 auto;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .video-wrap video { width: 100%; height: auto; display: block; max-height: 540px; }
-
-    .notice-box, .msg-card {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-    }
-
-    .notice-box { border-color: var(--border-gold); }
-
-    .slider-stage {
-      position: relative;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      text-align: center;
-    }
-
-    .slider-img-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 360px;
-    }
-
-    .slider-img-wrap img {
-      max-width: 100%;
-      max-height: 540px;
-      border-radius: 14px;
-      cursor: zoom-in;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease;
-    }
-
-    .slider-img-wrap img:hover { transform: scale(1.01); }
-
-    .slider-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .nav-btn {
-      background: var(--surface-solid);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-family: var(--sans-font);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    .dots { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(162, 213, 242, 0.28);
-      border: none;
-      cursor: pointer;
-    }
-    html[data-theme="light"] .dot { background: rgba(15, 76, 117, 0.22); }
-    .dot.active { background: var(--accent); transform: scale(1.25); }
-
-    .thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
-
-    .thumb-btn {
-      background: var(--surface-solid);
-      border: 2px solid transparent;
-      border-radius: 10px;
-      padding: 3px;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    .thumb-btn.active { border-color: var(--accent); }
-    .thumb-btn img { width: 100%; height: 62px; object-fit: cover; border-radius: 7px; display: block; }
-
-    .msg-card-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .msg-card-head h3 { color: var(--gold); font-size: 1.15rem; }
-
-    .copy-btn {
-      background: rgba(162, 213, 242, 0.14);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 7px 14px;
-      border-radius: 10px;
-      font-family: var(--sans-font);
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .copy-btn:hover { background: var(--accent); color: var(--accent-ink); }
-
-    .msg-body {
-      white-space: pre-wrap;
-      color: var(--text);
-      font-size: 1.02rem;
-      background: var(--msg-bg);
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .updates-list { list-style: none; display: grid; gap: 10px; }
-
-    .updates-list li {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 13px 16px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .privacy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    .privacy-item {
-      background: var(--surface-2);
-      border: 1px solid var(--emerald-border);
-      border-radius: var(--radius-md);
-      padding: 16px;
-    }
-
-    .privacy-item strong { color: var(--emerald); display: block; margin-bottom: 4px; font-size: 1.05rem; }
-
-    footer { text-align: center; color: var(--muted); padding: 18px 10px 36px; font-size: 0.9rem; }
+    .back-top-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-top-btn:hover { background: var(--accent); color: var(--accent-ink); }
 
     .lightbox {
       position: fixed;
@@ -639,69 +574,91 @@
     @media print {
       body::before, body::after { display: none !important; }
       body { background: #fff !important; color: #000 !important; }
-      .sticky-dock, .back-top-btn, .topbar, .quick-nav, .section, footer, .qr-tabs, .qr-actions, .download-btn, .apk-meta, .privacy-pill, .feature-chips {
+      .sticky-dock, .back-top-btn, .section:not(#qr-section), footer, .qr-tabs, .qr-actions {
         display: none !important;
       }
-      .hero {
+      #qr-section {
         background: #fff !important;
-        color: #000 !important;
-        border: 2px solid #000 !important;
+        border: none !important;
         box-shadow: none !important;
-        grid-template-columns: 1fr !important;
-        text-align: center !important;
       }
-      .hero h1, .hero p, .qr-caption { color: #000 !important; }
-      .qr-card { background: #fff !important; border: none !important; }
+      .qr-card { background: #fff !important; border: 2px solid #000 !important; }
+      .qr-caption { color: #000 !important; }
       .qr-frame canvas { width: 260px !important; height: 260px !important; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Sticky Glass Header + Quick Nav -->
+    <!-- Sticky Header + Quick Navigation (Flips cleanly RTL <-> LTR) -->
     <div class="sticky-dock">
-    <header class="topbar">
-      <div class="brand">
-        <img src="assets/Logo.jpg" alt="Masjid Clock Logo">
-        <div>
-          <div class="brand-title">Masjid Clock</div>
-          <div class="brand-sub">MOUJ SYNC</div>
+      <header class="topbar">
+        <div class="brand">
+          <img src="assets/Logo.jpg" alt="Masjid Clock Logo">
+          <div>
+            <div class="brand-title">Masjid Clock</div>
+            <div class="brand-sub">MOUJ SYNC</div>
+          </div>
         </div>
-      </div>
-      <div class="topbar-actions">
-        <button id="themeToggle" class="theme-btn" type="button" title="Toggle Dark/Light Theme">☀️ Light</button>
-        <button id="langToggle" class="lang-btn" type="button">English</button>
-      </div>
-    </header>
-
-    <!-- Quick Navigation Pills -->
-    <nav class="quick-nav" aria-label="Quick sections">
-      <a href="#welcome-section" data-i18n="nav_welcome">✨ تعارفی پیغام</a>
-      <a href="#video-section" data-i18n="nav_video">🎬 گائیڈ ویڈیوز</a>
-      <a href="#cards-section" data-i18n="nav_cards">🖼️ تصویری کارڈز</a>
-      <a href="#updates-section" data-i18n="nav_updates">🚀 اپڈیٹ نوٹس</a>
-      <a href="#privacy-section" data-i18n="nav_privacy">🔒 پرائیویسی</a>
-    </nav>
+        <div class="topbar-actions">
+          <button id="themeToggle" class="theme-btn" type="button">☀️ Light</button>
+          <button id="langToggle" class="lang-btn" type="button">English</button>
+        </div>
+      </header>
+      <nav class="quick-nav" aria-label="Quick sections">
+        <a href="#welcome-section" data-i18n="nav_welcome">✨ تعارفی پیغام</a>
+        <a href="#install-note-section" data-i18n="nav_note">🛡️ انسٹالیشن نوٹ</a>
+        <a href="#video-section" data-i18n="nav_video">🎬 گائیڈ ویڈیو</a>
+        <a href="#download-section" data-i18n="nav_download">⬇️ ڈاؤن لوڈ ایپ</a>
+        <a href="#qr-section" data-i18n="nav_qr">📱 QR کوڈ</a>
+        <a href="#cards-section" data-i18n="nav_cards">🖼️ تصویری کارڈز</a>
+        <a href="#updates-section" data-i18n="nav_updates">🚀 اپڈیٹ نوٹس</a>
+        <a href="#privacy-section" data-i18n="nav_privacy">🔒 پرائیویسی</a>
+      </nav>
     </div>
 
-    <!-- Hero + Download + Live QR -->
-    <section class="hero">
-      <div>
-        <div class="privacy-pill" data-i18n="privacy_badge">🛡️ 100% آف لائن • صفر ٹریکنگ • مفت</div>
-        <h1 data-i18n="hero_title">مسجد کلاک — نماز کے وقت موبائل خودکار سائلنٹ</h1>
-        <p data-i18n="hero_desc">جماعت کے وقت آپ کا اینڈرائیڈ فون خودکار طریقے سے سائلنٹ (Silent) اور نماز کے بعد دوبارہ نارمل۔ انٹرنیٹ، اکاؤنٹ یا اشتہارات کے بغیر مکمل پرائیویٹ ایپ۔</p>
-        <div class="feature-chips">
-          <span class="f-chip" data-i18n="chip_1">🔕 خودکار DND سائلنٹ</span>
-          <span class="f-chip" data-i18n="chip_2">🕌 55+ شہر + آف لائن GPS</span>
-          <span class="f-chip" data-i18n="chip_3">⏱️ لاک اسکرین منی ٹائمر</span>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <a id="apkDownloadBtn" class="download-btn" href="Masjid-Clock.apk" download="Masjid-Clock.apk">
-            <span>⬇️</span>
-            <span data-i18n="download_btn">Download Masjid Clock APK</span>
-          </a>
-          <button id="copyPageLinkBtn" type="button" class="pill-btn" style="padding:13px 18px;border-radius:14px;font-size:0.92rem;" data-i18n="share_link_btn">🔗 پیج کا لنک کاپی کریں</button>
-        </div>
+    <!-- 1. Welcome & App Introduction -->
+    <section class="section hero-top" id="welcome-section">
+      <div class="privacy-pill" data-i18n="privacy_badge">🛡️ 100% آف لائن • صفر ٹریکنگ • بالکل مفت</div>
+      <h1 class="hero-h1" data-i18n="hero_title">مسجد کلاک — نماز کے وقت موبائل خودکار سائلنٹ</h1>
+      <ul class="clean-list" id="welcomeList"></ul>
+    </section>
+
+    <!-- 2. Pre-Install Reassurance Note (Line-by-Line Clean Urdu/English) -->
+    <section class="section" id="install-note-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="install_note_title">🛡️ ڈاؤن لوڈ اور انسٹالیشن سے پہلے اہم نوٹ</h2>
+      </div>
+      <p id="installNoteLead" style="color: var(--muted); font-size: 1rem;"></p>
+      <ul class="clean-list" id="installNoteList"></ul>
+    </section>
+
+    <!-- 3. Guide Video (Direct Play) -->
+    <section class="section" id="video-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="video_title">🎬 انسٹالیشن گائیڈ ویڈیو</h2>
+        <span id="videoMetaBadge" class="ltr-num" style="color: var(--muted); font-size: 0.85rem;">MP4 • 4.4 MB</span>
+      </div>
+      <div id="videoTabs" class="video-tabs"></div>
+      <div class="video-wrap">
+        <video id="guideVideo" controls playsinline preload="metadata" poster="assets/Logo.jpg">
+          <source id="videoSource" src="assets/guide-video.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+      <p id="videoCaption" style="text-align: center; color: var(--muted); margin-top: 12px; font-size: 0.98rem;"></p>
+    </section>
+
+    <!-- 4. Download Masjid Clock APK (Clean & Focused) -->
+    <section class="section" id="download-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="download_title">⬇️ مسجد کلاک ایپ ڈاؤن لوڈ کریں</h2>
+      </div>
+      <div class="download-box">
+        <a id="apkDownloadBtn" class="download-btn" href="Masjid-Clock.apk" download="Masjid-Clock.apk">
+          <span>⬇️</span>
+          <span data-i18n="download_btn">Download Masjid Clock APK</span>
+        </a>
         <div class="apk-meta">
           <span class="ltr-num">Version: V4</span>
           <span>•</span>
@@ -710,7 +667,13 @@
           <span class="ltr-num">Android APK</span>
         </div>
       </div>
+    </section>
 
+    <!-- 5. QR Code Card -->
+    <section class="section" id="qr-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="qr_title">📱 QR کوڈ (پرنٹ اور شیئرنگ کے لیے)</h2>
+      </div>
       <div class="qr-card">
         <div class="qr-tabs">
           <button type="button" class="qr-tab active" data-qr-mode="page" data-i18n="qr_tab_page">اس صفحے کا QR</button>
@@ -719,7 +682,7 @@
         <div class="qr-frame">
           <canvas id="qrCanvas" width="220" height="220" aria-label="QR Code"></canvas>
         </div>
-        <div id="qrCaption" class="qr-caption" data-i18n="qr_caption">مسجد کے نوٹس بورڈ کے لیے پرنٹ کریں یا موبائل سے اسکین کریں</div>
+        <div class="qr-caption" data-i18n="qr_caption">مسجد کے نوٹس بورڈ کے لیے پرنٹ کریں یا موبائل سے اسکین کریں</div>
         <div class="qr-actions">
           <button id="downloadQrBtn" type="button" class="pill-btn" data-i18n="qr_save">⬇️ QR محفوظ کریں</button>
           <button id="printQrBtn" type="button" class="pill-btn" data-i18n="qr_print">🖨️ نوٹس بورڈ پرنٹ</button>
@@ -727,59 +690,7 @@
       </div>
     </section>
 
-    <!-- Welcome & Quick Guide (Moved to Top!) -->
-    <section class="section" id="welcome-section">
-      <div class="section-header">
-        <h2 class="section-title" data-i18n="welcome_title">✨ تعارفی پیغام و بنیادی رہنمائی</h2>
-      </div>
-      <div class="msg-card">
-        <div class="msg-card-head">
-          <h3 data-i18n="intro_heading">مسجد کلاک (Masjid Clock) — تعارف اور مختصر طریقہ</h3>
-          <button type="button" class="copy-btn" data-copy-target="introMsgText" data-i18n="copy_btn">📋 پیغام کاپی کریں</button>
-        </div>
-        <div id="introMsgText" class="msg-body">السلام علیکم ورحمۃ اللہ وبرکاتہ!
-
-مسجد کلاک (Masjid Clock) میں خوش آمدید۔
-
-یہ ایپ نماز کی یکسوئی کے لیے بنائی گئی ہے جو جماعت کے وقت آپ کا موبائل خودکار طریقے سے سائلنٹ (Silent) اور نماز کے بعد دوبارہ نارمل کر دیتی ہے۔
-
-اہم خصوصیات:
-• 100% آف لائن (Offline): انٹرنیٹ کے بغیر مکمل کام کرتی ہے۔
-• مکمل پرائیویسی: ذاتی ڈیٹا، تصاویر یا انٹرنیٹ تک صفر رسائی۔
-• اشتہارات اور فیس سے مکمل پاک۔
-
-انسٹالیشن اور سیٹنگ کا مختصر طریقہ:
-1. اوپر دیے گئے بٹن سے Masjid-Clock.apk ڈاؤن لوڈ اور انسٹال کریں (اگر فون اجازت مانگے تو Settings میں جا کر Allow from this source آن کر دیں، اور Play Protect کا پیغام آئے تو More details دبا کر Install anyway کر دیں)۔
-2. ایپ کھول کر صرف ایک بار تین ضروری پرمیشنز (Do Not Disturb، بیٹری کی اجازت Unrestricted، اور Alarms & Reminders) آن کر دیں۔
-3. مکمل تفصیل کے لیے نیچے دی گئی ویڈیو اور 1 سے 6 رہنمائی کارڈز ملاحظہ فرمائیں۔</div>
-      </div>
-    </section>
-
-    <!-- Multi-Video Ready Guides Section -->
-    <section class="section" id="video-section">
-      <div class="section-header">
-        <h2 class="section-title" data-i18n="video_title">🎬 گائیڈ ویڈیوز (Direct Play)</h2>
-        <span id="videoMetaBadge" class="ltr-num" style="color: var(--muted); font-size: 0.85rem;">MP4 • 4.7 MB</span>
-      </div>
-      <div id="videoTabs" class="video-tabs"></div>
-      <div class="video-grid">
-        <div class="video-wrap">
-          <video id="guideVideo" controls playsinline preload="metadata" poster="assets/Logo.jpg">
-            <source id="videoSource" src="assets/guide-video.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
-        <div class="notice-box">
-          <div class="msg-card-head">
-            <h3 id="videoNoteTitle">ویڈیو کلئیرنس اور اہم نوٹ (نئے صارفین کے لیے)</h3>
-            <button type="button" class="copy-btn" data-copy-target="clearanceMsgText" data-i18n="copy_btn">📋 پیغام کاپی کریں</button>
-          </div>
-          <div id="clearanceMsgText" class="msg-body"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Visual Guide Cards Slider -->
+    <!-- 6. Visual Guide Cards (1 to 6) -->
     <section class="section" id="cards-section">
       <div class="section-header">
         <h2 class="section-title" data-i18n="cards_title">🖼️ تصویری رہنمائی کارڈز (1 تا 6)</h2>
@@ -799,15 +710,15 @@
       </div>
     </section>
 
-    <!-- Update Notes -->
+    <!-- 7. Update Notes -->
     <section class="section" id="updates-section">
       <div class="section-header">
-        <h2 class="section-title" data-i18n="updates_title">🚀 اپڈیٹ نوٹس (Update Notes — V4)</h2>
+        <h2 class="section-title" data-i18n="updates_title">🚀 اپڈیٹ نوٹس (V4)</h2>
       </div>
-      <ul class="updates-list" id="updatesList"></ul>
+      <ul class="clean-list" id="updatesList"></ul>
     </section>
 
-    <!-- 100% Privacy Section -->
+    <!-- 8. 100% Privacy Section -->
     <section class="section" id="privacy-section">
       <div class="section-header">
         <h2 class="section-title" data-i18n="privacy_title">🔒 100% پرائیویسی کی ضمانت</h2>
@@ -1048,37 +959,18 @@
       return { renderToCanvas };
     })();
 
-    const DEFAULT_APK_URL = 'https://moujjcare-cmyk.github.io/masjid-clock/Masjid-Clock.apk';
-    const DEFAULT_PAGE_URL = 'https://moujjcare-cmyk.github.io/masjid-clock/';
+    const DEFAULT_PAGE_URL = 'https://moujjcare-cmyk.github.io/masjid-clock-Landing-/';
+    const DEFAULT_APK_URL = 'https://moujjcare-cmyk.github.io/masjid-clock-Landing-/Masjid-Clock.apk';
 
-    // Easy Multi-Video Registry: Add new videos (Settings, Dashboard, etc.) here!
     const VIDEOS = [
       {
         id: 'install',
         src: 'assets/guide-video.mp4',
-        meta: 'MP4 • 4.7 MB',
+        meta: 'MP4 • 4.4 MB',
         tabUr: '1. انسٹالیشن اور پرمیشنز',
         tabEn: '1. Install & Permissions',
-        titleUr: 'ویڈیو کلئیرنس اور اہم نوٹ (نئے صارفین کے لیے)',
-        titleEn: 'Video Clearance & Important Note (New Users)',
-        descUr: `مسجد کلاک (Masjid Clock) ایپ انسٹال کرنے اور ضروری پرمیشنز آن کرنے کا عملی طریقہ اس ویڈیو میں دیکھیں۔
-
-اہم نوٹ (نئے موبائل صارفین کے لیے):
-ویڈیو بناتے وقت ہمارے موبائل میں پہلے سے اجازت موجود تھی، لیکن جب آپ اپنے فون پر پہلی بار انسٹال کریں گے تو دو اضافی پیغامات آ سکتے ہیں جن سے بالکل گھبرانے کی ضرورت نہیں:
-
-1. اگر فون یا براؤزر اجازت مانگے تو Settings میں جا کر Allow from this source کو آن (ON) کر دیں۔
-2. اگر Google Play Protect کا پیغام آئے تو More details پر ٹیپ کر کے نیچے Install anyway دبا دیں۔
-
-یہ ایپ 100% آف لائن (Offline) ہے اور آپ کے کسی ذاتی ڈیٹا تک اس کی کوئی رسائی نہیں ہے۔ تفصیلی رہنمائی نیچے دیے گئے کارڈز میں بھی موجود ہے۔`,
-        descEn: `Watch this short video for a practical walkthrough of installing Masjid Clock and enabling the required permissions.
-
-Important Note for New Users:
-Our phone already had install permission enabled while recording. When installing for the first time, you may see two standard Android prompts:
-
-1. If your browser or phone asks for permission, open Settings and turn ON "Allow from this source".
-2. If Google Play Protect appears, tap "More details" and then "Install anyway".
-
-This app is 100% offline with zero access to your personal data.`
+        capUr: 'لینڈنگ پیج سے ایپ ڈاؤن لوڈ کرنے، انسٹال کرنے اور تینوں ضروری پرمیشنز آن کرنے کا مکمل عملی طریقہ۔',
+        capEn: 'Step-by-step walkthrough: downloading from this page, installing, and enabling the 3 required permissions.'
       }
     ];
 
@@ -1086,74 +978,106 @@ This app is 100% offline with zero access to your personal data.`
       ur: {
         langBtn: 'English',
         nav_welcome: '✨ تعارفی پیغام',
-        nav_video: '🎬 گائیڈ ویڈیوز',
+        nav_note: '🛡️ انسٹالیشن نوٹ',
+        nav_video: '🎬 گائیڈ ویڈیو',
+        nav_download: '⬇️ ڈاؤن لوڈ ایپ',
+        nav_qr: '📱 QR کوڈ',
         nav_cards: '🖼️ تصویری کارڈز',
         nav_updates: '🚀 اپڈیٹ نوٹس',
         nav_privacy: '🔒 پرائیویسی',
-        privacy_badge: '🛡️ 100% آف لائن • صفر ٹریکنگ • مفت',
+        privacy_badge: '🛡️ 100% آف لائن • صفر ٹریکنگ • بالکل مفت',
         hero_title: 'مسجد کلاک — نماز کے وقت موبائل خودکار سائلنٹ',
-        hero_desc: 'جماعت کے وقت آپ کا اینڈرائیڈ فون خودکار طریقے سے سائلنٹ (Silent) اور نماز کے بعد دوبارہ نارمل۔ انٹرنیٹ، اکاؤنٹ یا اشتہارات کے بغیر مکمل پرائیویٹ ایپ۔',
-        chip_1: '🔕 خودکار DND سائلنٹ',
-        chip_2: '🕌 55+ شہر + آف لائن GPS',
-        chip_3: '⏱️ لاک اسکرین منی ٹائمر',
+        install_note_title: '🛡️ ڈاؤن لوڈ اور انسٹالیشن سے پہلے اہم نوٹ',
+        install_note_lead: 'جب آپ پہلی بار اپنے موبائل پر یہ ایپ ڈاؤن لوڈ اور انسٹال کریں گے تو اینڈرائیڈ سسٹم کی طرف سے درج ذیل عام حفاظتی پیغامات آ سکتے ہیں جن سے گھبرانے کی بالکل ضرورت نہیں:',
+        video_title: '🎬 انسٹالیشن گائیڈ ویڈیو',
+        download_title: '⬇️ مسجد کلاک ایپ ڈاؤن لوڈ کریں',
         download_btn: 'Download Masjid Clock APK',
-        share_link_btn: '🔗 پیج کا لنک کاپی کریں',
-        link_copied_toast: 'پیج کا لنک کاپی ہو گیا! اب آپ واٹس ایپ پر شیئر کر سکتے ہیں۔',
+        qr_title: '📱 QR کوڈ (پرنٹ اور شیئرنگ کے لیے)',
         qr_tab_page: 'اس صفحے کا QR',
         qr_tab_apk: 'براہِ راست APK QR',
         qr_caption: 'مسجد کے نوٹس بورڈ کے لیے پرنٹ کریں یا موبائل سے اسکین کریں',
         qr_save: '⬇️ QR محفوظ کریں',
         qr_print: '🖨️ نوٹس بورڈ پرنٹ',
-        welcome_title: '✨ تعارفی پیغام و بنیادی رہنمائی',
-        intro_heading: 'مسجد کلاک (Masjid Clock) — تعارف اور مختصر طریقہ',
-        video_title: '🎬 گائیڈ ویڈیوز (Direct Play)',
-        copy_btn: '📋 پیغام کاپی کریں',
         cards_title: '🖼️ تصویری رہنمائی کارڈز (1 تا 6)',
         prev_btn: '◀ پچھلا',
         next_btn: 'اگلا ▶',
-        updates_title: '🚀 اپڈیٹ نوٹس (Update Notes — V4)',
+        updates_title: '🚀 اپڈیٹ نوٹس (V4)',
         privacy_title: '🔒 100% پرائیویسی کی ضمانت',
-        footer_text: 'Masjid Clock — Powered by MOUJ SYNC',
-        copied_toast: 'پیغام کاپی ہو گیا!'
+        footer_text: 'Masjid Clock — Powered by MOUJ SYNC'
       },
       en: {
         langBtn: 'اردو',
         nav_welcome: '✨ Welcome',
-        nav_video: '🎬 Video Guides',
+        nav_note: '🛡️ Install Note',
+        nav_video: '🎬 Guide Video',
+        nav_download: '⬇️ Download APK',
+        nav_qr: '📱 QR Code',
         nav_cards: '🖼️ Visual Cards',
-        nav_updates: '🚀 Update Notes',
+        nav_updates: '🚀 Updates',
         nav_privacy: '🔒 Privacy',
         privacy_badge: '🛡️ 100% Offline • Zero Tracking • Free',
         hero_title: 'Masjid Clock — Auto-Silent Phone for Prayer',
-        hero_desc: 'Automatically silences your Android phone during Jamaat and restores normal mode afterward. Works 100% offline with zero accounts, ads, or tracking.',
-        chip_1: '🔕 Auto DND Silent',
-        chip_2: '🕌 55+ Cities + Offline GPS',
-        chip_3: '⏱️ Lock-Screen Mini Timer',
+        install_note_title: '🛡️ Important Note Before Downloading & Installing',
+        install_note_lead: 'When downloading and installing on Android for the first time, you may see these standard security prompts—there is nothing to worry about:',
+        video_title: '🎬 Installation Guide Video',
+        download_title: '⬇️ Download Masjid Clock App',
         download_btn: 'Download Masjid Clock APK',
-        share_link_btn: '🔗 Copy Page Link',
-        link_copied_toast: 'Page link copied! Ready to share on WhatsApp.',
+        qr_title: '📱 QR Code (For Print & Sharing)',
         qr_tab_page: 'Page Link QR',
         qr_tab_apk: 'Direct APK QR',
         qr_caption: 'Print for your Masjid notice board or scan with any phone camera',
         qr_save: '⬇️ Save QR',
         qr_print: '🖨️ Print Notice',
-        welcome_title: '✨ Welcome & Quick Guide',
-        intro_heading: 'Masjid Clock — Introduction & 3-Step Setup',
-        video_title: '🎬 Video Guides (Direct Play)',
-        copy_btn: '📋 Copy Text',
         cards_title: '🖼️ Visual Guide Cards (1 to 6)',
         prev_btn: '◀ Prev',
         next_btn: 'Next ▶',
-        updates_title: '🚀 Update Notes (V4 Live Release)',
+        updates_title: '🚀 Update Notes (V4)',
         privacy_title: '🔒 100% Privacy Guarantee',
-        footer_text: 'Masjid Clock — Powered by MOUJ SYNC',
-        copied_toast: 'Copied to clipboard!'
+        footer_text: 'Masjid Clock — Powered by MOUJ SYNC'
       }
     };
 
+    const WELCOME_POINTS = [
+      {
+        ur: 'السلام علیکم ورحمۃ اللہ وبرکاتہ! مسجد کلاک (<span class="en-term">Masjid Clock</span>) میں خوش آمدید۔',
+        en: 'Assalamu Alaikum! Welcome to Masjid Clock (MOUJ SYNC).'
+      },
+      {
+        ur: 'یہ ایپ نماز کی یکسوئی کے لیے بنائی گئی ہے جو جماعت کے وقت آپ کا موبائل خودکار طریقے سے سائلنٹ (<span class="en-term">Silent</span>) اور نماز کے بعد دوبارہ نارمل کر دیتی ہے۔',
+        en: 'Built for peaceful prayer: automatically silences your phone during Jamaat and restores normal mode afterward.'
+      },
+      {
+        ur: '100% آف لائن (<span class="en-term">Offline</span>): انٹرنیٹ کے بغیر مکمل کام کرتی ہے اور ذاتی ڈیٹا یا تصاویر تک اس کی کوئی رسائی نہیں۔',
+        en: '100% Offline: works completely without internet, ads, fees, or access to personal data.'
+      },
+      {
+        ur: 'ایپ کھول کر صرف ایک بار تین ضروری اجازتیں (<span class="en-term">Do Not Disturb</span>، بیٹری <span class="en-term">Unrestricted</span>، اور <span class="en-term">Alarms &amp; Reminders</span>) آن کر دیں۔',
+        en: 'Open the app once and enable 3 permissions (Do Not Disturb, Unrestricted Battery, and Alarms & Reminders).'
+      }
+    ];
+
+    const INSTALL_NOTES = [
+      {
+        ur: '<span class="step-badge">1</span> اگر ڈاؤن لوڈ کرتے وقت <span class="en-term">File might be harmful</span> کا پیغام آئے تو گھبرائیں نہیں، یہ ہر غیر-<span class="en-term">Play Store</span> ایپ پر آتا ہے؛ بس <span class="en-term">Download anyway</span> دبا دیں۔',
+        en: '<span class="step-badge">1</span> If Chrome shows "File might be harmful", tap "Download anyway"—this appears for all apps downloaded outside the Play Store.'
+      },
+      {
+        ur: '<span class="step-badge">2</span> اگر فون یا براؤزر انسٹالیشن کی اجازت مانگے تو <span class="en-term">Settings</span> میں جا کر <span class="en-term">Allow from this source</span> کو آن کر دیں۔',
+        en: '<span class="step-badge">2</span> If your browser asks for permission, open Settings and turn ON "Allow from this source".'
+      },
+      {
+        ur: '<span class="step-badge">3</span> اگر <span class="en-term">Google Play Protect</span> کا پیغام آئے تو <span class="en-term">More details</span> پر ٹیپ کر کے نیچے <span class="en-term">Install anyway</span> دبا دیں۔',
+        en: '<span class="step-badge">3</span> If Google Play Protect appears, tap "More details" and then "Install anyway".'
+      },
+      {
+        ur: '<span class="step-badge">✓</span> یہ ایپ 100% آف لائن ہے اور انٹرنیٹ استعمال نہیں کرتی، اس لیے آپ کا ڈیٹا مکمل محفوظ ہے۔',
+        en: '<span class="step-badge">✓</span> The app is 100% offline with zero internet permission, keeping your device completely safe.'
+      }
+    ];
+
     const CARDS = [
       { src: 'assets/1.jpg', ur: 'کارڈ 1: موبائل خودکار سائلنٹ — انٹرنیٹ کے بغیر مکمل آف لائن', en: 'Card 1: Auto-Silent Overview — 100% Offline, Zero Ads' },
-      { src: 'assets/2.jpg', ur: 'کارڈ 2: ایپ انسٹال کرنے کے 2 آسان مراحل (Allow Source & Play Protect)', en: 'Card 2: 2 Easy Installation Steps (Allow Source & Play Protect)' },
+      { src: 'assets/2.jpg', ur: 'کارڈ 2: براؤزر کو اجازت اور ایپ انسٹال کرنے کے 2 آسان مراحل', en: 'Card 2: 2 Easy Installation Steps (Browser Permission & Play Protect)' },
       { src: 'assets/3.jpg', ur: 'کارڈ 3: صرف ایک بار، 1 منٹ کی ضروری سیٹنگ (3 پرمیشنز)', en: 'Card 3: One-Time 1-Minute Setup (3 Essential Permissions)' },
       { src: 'assets/4.jpg', ur: 'کارڈ 4: روزمرہ کے بٹنوں اور کلمہ سرکل کے رنگوں کا استعمال', en: 'Card 4: Daily Controls & Kalima Circle Color Meanings' },
       { src: 'assets/5.jpg', ur: 'کارڈ 5: مساجد، شہر (55+ شہر / آف لائن GPS) اور وقت کی سیٹنگز', en: 'Card 5: Masjid Profiles, 55+ Cities / Offline GPS & Jamaat Times' },
@@ -1169,27 +1093,9 @@ This app is 100% offline with zero access to your personal data.`
 
     const PRIVACY_ITEMS = [
       { titleUr: 'کوئی لاگ ان نہیں', descUr: 'اکاؤنٹ، ای میل یا فون نمبر کی کوئی ضرورت نہیں۔', titleEn: 'No Login Required', descEn: 'Zero accounts, emails, or phone numbers needed.' },
-      { titleUr: 'کوئی ٹریکنگ نہیں', descUr: 'کوئی کوکیز، اینالیٹکس یا صارف کی نگرانی (Tracking) شامل نہیں۔', titleEn: 'Zero Tracking', descEn: 'Zero cookies, analytics, or user tracking of any kind.' },
+      { titleUr: 'کوئی ٹریکنگ نہیں', descUr: 'کوئی کوکیز، اینالیٹکس یا صارف کی نگرانی شامل نہیں۔', titleEn: 'Zero Tracking', descEn: 'Zero cookies, analytics, or user tracking of any kind.' },
       { titleUr: '100% آف لائن ایپ', descUr: 'Masjid-Clock.apk انٹرنیٹ، تصاویر یا ذاتی ڈیٹا تک صفر رسائی رکھتی ہے۔', titleEn: '100% Offline APK', descEn: 'Zero access to internet, photos, or personal data.' }
     ];
-
-    const INTRO_EN = `Assalamu Alaikum wa Rahmatullahi wa Barakatuh!
-
-Welcome to Masjid Clock (MOUJ SYNC).
-
-This app is built for peaceful prayer: it automatically silences your phone at Jamaat time and restores normal mode afterward.
-
-Key Features:
-• 100% Offline: Works completely without internet.
-• Complete Privacy: Zero access to personal data, photos, or internet.
-• Free of ads and fees.
-
-Quick Setup (3 Steps):
-1. Tap the download button above to install Masjid-Clock.apk (enable "Allow from this source" if prompted, and tap "More details -> Install anyway" if Play Protect appears).
-2. Open the app once and enable the 3 required permissions (Do Not Disturb, Battery Unrestricted, and Alarms & Reminders).
-3. Watch the video and Visual Guide Cards 1 to 6 below for full details.`;
-
-    const INTRO_UR = document.getElementById('introMsgText').textContent;
 
     let currentLang = 'ur';
     let currentSlide = 0;
@@ -1214,20 +1120,12 @@ Quick Setup (3 Steps):
       else applyTheme('dark');
     }
 
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2400);
-    }
-
     function getQrTargetUrl() {
+      const loc = window.location.href;
       if (qrMode === 'apk') {
-        const loc = window.location.href;
         if (loc.startsWith('http://') || loc.startsWith('https://')) return new URL('Masjid-Clock.apk', loc).href;
         return DEFAULT_APK_URL;
       }
-      const loc = window.location.href;
       if (loc.startsWith('http://') || loc.startsWith('https://')) return loc.split('#')[0];
       return DEFAULT_PAGE_URL;
     }
@@ -1250,8 +1148,7 @@ Quick Setup (3 Steps):
 
       const v = VIDEOS[currentVideo];
       document.getElementById('videoMetaBadge').textContent = v.meta;
-      document.getElementById('videoNoteTitle').textContent = currentLang === 'ur' ? v.titleUr : v.titleEn;
-      document.getElementById('clearanceMsgText').textContent = currentLang === 'ur' ? v.descUr : v.descEn;
+      document.getElementById('videoCaption').textContent = currentLang === 'ur' ? v.capUr : v.capEn;
 
       const videoEl = document.getElementById('guideVideo');
       const sourceEl = document.getElementById('videoSource');
@@ -1273,9 +1170,15 @@ Quick Setup (3 Steps):
     }
 
     function renderLists() {
+      document.getElementById('welcomeList').innerHTML = WELCOME_POINTS
+        .map(w => `<li>${w[currentLang]}</li>`).join('');
+
+      document.getElementById('installNoteLead').textContent = I18N[currentLang].install_note_lead;
+      document.getElementById('installNoteList').innerHTML = INSTALL_NOTES
+        .map(n => `<li class="gold-line">${n[currentLang]}</li>`).join('');
+
       document.getElementById('updatesList').innerHTML = UPDATES
-        .map(u => `<li><span>✨</span><span>${u[currentLang]}</span></li>`)
-        .join('');
+        .map(u => `<li><span>✨</span><span>${u[currentLang]}</span></li>`).join('');
 
       document.getElementById('privacyGrid').innerHTML = PRIVACY_ITEMS
         .map(p => `
@@ -1296,7 +1199,6 @@ Quick Setup (3 Steps):
         const key = el.getAttribute('data-i18n');
         if (dict[key]) el.textContent = dict[key];
       });
-      document.getElementById('introMsgText').textContent = lang === 'ur' ? INTRO_UR : INTRO_EN;
       renderVideos();
       renderLists();
       renderSlide(currentSlide);
@@ -1368,26 +1270,6 @@ Quick Setup (3 Steps):
 
     document.getElementById('printQrBtn').addEventListener('click', () => window.print());
 
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const text = document.getElementById(btn.getAttribute('data-copy-target')).textContent;
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch {
-          const ta = document.createElement('textarea');
-          ta.value = text;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-        }
-        showToast(I18N[currentLang].copied_toast);
-      });
-    });
-
-
     document.querySelectorAll('.quick-nav a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
         const target = document.querySelector(link.getAttribute('href'));
@@ -1397,27 +1279,6 @@ Quick Setup (3 Steps):
         }
       });
     });
-
-
-    document.getElementById('copyPageLinkBtn').addEventListener('click', async () => {
-      const url = (window.location.href.startsWith('http://') || window.location.href.startsWith('https://'))
-        ? window.location.href.split('#')[0]
-        : DEFAULT_PAGE_URL;
-      try {
-        await navigator.clipboard.writeText(url);
-      } catch {
-        const ta = document.createElement('textarea');
-        ta.value = url;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      }
-      showToast(I18N[currentLang].link_copied_toast);
-    });
-
 
     const backToTopBtn = document.getElementById('backToTopBtn');
     window.addEventListener('scroll', () => {
